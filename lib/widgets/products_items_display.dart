@@ -10,10 +10,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../Utils/consts.dart';
 import '../models/product_model.dart';
+import '../pages/screen/food_detail_screeen.dart';
 
 class ProductsItemsDisplay extends ConsumerWidget {
-
   const ProductsItemsDisplay({super.key, required this.foodModel});
+
   final FoodModel foodModel;
 
   @override
@@ -26,15 +27,15 @@ class ProductsItemsDisplay extends ConsumerWidget {
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   PageRouteBuilder(
-        //     transitionDuration: Duration(seconds: 1),
-        //     pageBuilder: (_, __, ___) =>
-        //      FoodDetailScreeen(product: foodModel),
-        //   ),
-        // );
-        //
+        Navigator.push(
+          context,
+          // ignore: inference_failure_on_instance_creation, always_specify_types
+          PageRouteBuilder(
+            transitionDuration: const Duration(seconds: 1),
+
+            pageBuilder: (_, __, ___) => FoodDetailScreeen(product: foodModel),
+          ),
+        );
       },
       child: Stack(
         alignment: Alignment.bottomCenter,
@@ -63,27 +64,12 @@ class ProductsItemsDisplay extends ConsumerWidget {
                 //
                 //
               },
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 15,
 
-                // backgroundColor:
-                //     provider.isExist(foodModel.name)
-                //         ? Colors.red[100]
-                //         : Colors.transparent,
-                //
-                //
+                backgroundColor: Colors.red[100],
 
-                //
-                // child:
-                //     provider.isExist(foodModel.name)
-                //         ? Image.asset(
-                //           "assets/food-delivery/icon/fire.png",
-                //           height: 22,
-                //         )
-                //         : Icon(Icons.local_fire_department, color: red),
-                //
-                //
-                child: Icon(Icons.local_fire_department, color: red),
+                child: Image.asset('assets/food-delivery/icon/fire.png', height: 22),
               ),
             ),
           ),

@@ -5,6 +5,7 @@ import '../../Utils/consts.dart';
 import '../../models/categories_model.dart';
 import '../../models/product_model.dart';
 import '../../widgets/products_items_display.dart';
+import 'view_all_screen.dart';
 
 class FoodAppHomeScreen extends StatefulWidget {
   const FoodAppHomeScreen({super.key});
@@ -200,6 +201,11 @@ class _FoodAppHomeScreenState extends State<FoodAppHomeScreen> {
                 const Text('Popular Now', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
                 GestureDetector(
+                  onTap: () {
+                    // ignore: inference_failure_on_instance_creation, always_specify_types
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ViewAllProductScreen()));
+                  },
+
                   child: Row(
                     children: <Widget>[
                       const Text('View All', style: TextStyle(color: orange)),
