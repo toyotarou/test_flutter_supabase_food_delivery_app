@@ -80,7 +80,6 @@ String desc =
 // first let's upload the csv file in supabase.
 // if you have required this sample data then join your discord server i will attach all the sampel file there,
 class FoodModel {
-
   FoodModel({
     required this.imageCard,
     required this.imageDetail,
@@ -97,17 +96,19 @@ class FoodModel {
   factory FoodModel.fromJson(Map<String, dynamic> json) {
     return FoodModel(
       id: json['id'].toString(),
-      imageCard: json['imageCard'].toString(),
-      imageDetail: json['imageDetail'].toString(),
+      imageCard: json['image_card'].toString(),
+      imageDetail: json['image_detail'].toString(),
       name: json['name'].toString(),
       price: (json['price'] as num?)?.toDouble() ?? 0.0,
       rate: (json['rate'] as num?)?.toDouble() ?? 0.0,
-      specialItems: json['specialItems'].toString(),
+      specialItems: json['special_items'].toString(),
       category: json['category'].toString(),
-      kcal: json['kcal'].toString().toInt(),
+      kcal: (json['kcal'] != null) ? json['kcal'].toString().toInt() : 0,
+
       time: json['time'].toString(),
     );
   }
+
   final String imageCard;
   final String id; // Add this
   final String imageDetail;
