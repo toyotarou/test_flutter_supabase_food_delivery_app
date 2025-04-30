@@ -33,7 +33,7 @@ class ProductsItemsDisplay extends ConsumerWidget {
           PageRouteBuilder(
             transitionDuration: const Duration(seconds: 1),
 
-            pageBuilder: (_, __, ___) => FoodDetailScreeen(product: foodModel),
+            pageBuilder: (_, __, ___) => FoodDetailScreen(product: foodModel),
           ),
         );
       },

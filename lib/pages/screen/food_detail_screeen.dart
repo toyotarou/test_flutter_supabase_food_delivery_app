@@ -7,16 +7,16 @@ import '../../Utils/consts.dart';
 import '../../models/product_model.dart';
 import '../../widgets/snack_bar.dart';
 
-class FoodDetailScreeen extends ConsumerStatefulWidget {
-  const FoodDetailScreeen({super.key, required this.product});
+class FoodDetailScreen extends ConsumerStatefulWidget {
+  const FoodDetailScreen({super.key, required this.product});
 
   final FoodModel product;
 
   @override
-  ConsumerState<FoodDetailScreeen> createState() => _FoodDetailScreeenState();
+  ConsumerState<FoodDetailScreen> createState() => _FoodDetailScreenState();
 }
 
-class _FoodDetailScreeenState extends ConsumerState<FoodDetailScreeen> {
+class _FoodDetailScreenState extends ConsumerState<FoodDetailScreen> {
   int quantity = 1;
 
   @override
