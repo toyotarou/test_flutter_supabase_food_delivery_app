@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'pages/auth/login_screen.dart';
-import 'pages/screen/onbording_screen.dart';
+import 'pages/screen/app_main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthCheck extends StatelessWidget {
-
   AuthCheck({super.key});
+
   final SupabaseClient supabase = Supabase.instance.client;
 
   @override
@@ -38,7 +38,7 @@ class AuthCheck extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<AuthState> snapshot) {
         final Session? session = supabase.auth.currentSession;
         if (session != null) {
-          return const OnbordingScreen(); // if logged in, go to home screen
+          return const AppMainScreen(); // if logged in, go to home screen
         } else {
           return const LoginScreen(); // otherwise, show login screen
         }
