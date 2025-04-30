@@ -174,42 +174,40 @@ class _FoodAppHomeScreenState extends State<FoodAppHomeScreen> {
 
   ///
   Widget _buildCategoryList() {
+    // ignore: always_specify_types
     return FutureBuilder(
       future: futureCategories,
-      builder: (context, snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
         return SizedBox(
           height: 60,
 
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemCount: categories.length,
-            itemBuilder: (context, index) {
-              final category = categories[index];
+            itemBuilder: (BuildContext context, int index) {
+              final CategoryModel category = categories[index];
               return Padding(
                 padding: EdgeInsets.only(left: index == 0 ? 15 : 0, right: 15),
                 child: GestureDetector(
-                  // onTap: () => handelCategoryTap(category.name),
-                  //
-                  //
-                  //
-                  //
+                  onTap: () => handelCategoryTap(category.name),
+
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                     decoration: BoxDecoration(
                       color: selectedCategory == category.name ? red : grey1,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Row(
-                      children: [
+                      children: <Widget>[
                         Container(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: selectedCategory == category.name ? Colors.white : Colors.transparent,
                             shape: BoxShape.circle,
@@ -218,10 +216,12 @@ class _FoodAppHomeScreenState extends State<FoodAppHomeScreen> {
                             category.image,
                             width: 20,
                             height: 20,
-                            errorBuilder: (context, error, stackTrace) => Icon(Icons.fastfood),
+                            errorBuilder:
+                                (BuildContext context, Object error, StackTrace? stackTrace) =>
+                                    const Icon(Icons.fastfood),
                           ),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Text(
                           category.name,
                           style: TextStyle(
@@ -240,5 +240,22 @@ class _FoodAppHomeScreenState extends State<FoodAppHomeScreen> {
         );
       },
     );
+  }
+
+  ///
+  void handelCategoryTap(String category) {
+    if (selectedCategory == category) {
+      return;
+    }
+
+    setState(() {
+      selectedCategory = category;
+      // // fetch food products
+      // futureFoodProducts = fetchFoodProduct(category);
+      //
+      //
+      //
+      //
+    });
   }
 }
