@@ -25,18 +25,6 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      // body: SafeArea(
-      //   child: Column(
-      //     children: <Widget>[
-      //       ElevatedButton(
-      //         onPressed: () {
-      //           authService.logout(context);
-      //         },
-      //         child: const Icon(Icons.exit_to_app),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -130,7 +118,11 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                     MaterialButton(
                       onPressed: () {
                         // ignore: inference_failure_on_instance_creation, always_specify_types
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AppMainScreen()));
+                        Navigator.pushReplacement(
+                          context,
+                          // ignore: inference_failure_on_instance_creation, always_specify_types
+                          MaterialPageRoute(builder: (context) => const AppMainScreen()),
+                        );
                       },
                       color: red,
                       height: 65,

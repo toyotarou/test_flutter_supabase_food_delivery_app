@@ -5,6 +5,7 @@ import 'package:readmore/readmore.dart';
 
 import '../../Utils/consts.dart';
 import '../../models/product_model.dart';
+import '../../provider/cart_provider.dart';
 import '../../widgets/snack_bar.dart';
 
 class FoodDetailScreen extends ConsumerStatefulWidget {
@@ -160,13 +161,9 @@ class _FoodDetailScreenState extends ConsumerState<FoodDetailScreen> {
         backgroundColor: Colors.transparent,
         label: MaterialButton(
           onPressed: () async {
-            // await ref
-            //     .read(cartProvider)
-            //     .addCart(widget.product.name, widget.product.toMap(), quantity);
-            //
-            //
-            //
+            await ref.read(cartProvider).addCart(widget.product.name, widget.product.toMap(), quantity);
 
+            // ignore: use_build_context_synchronously
             showSnackBar(context, '${widget.product.name} added to cart!', Colors.green);
           },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
