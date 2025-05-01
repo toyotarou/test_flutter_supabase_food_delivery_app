@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// import 'package:food_delivery_app/Core/Provider/favorite_provider.dart';
-// import 'package:food_delivery_app/Core/Utils/consts.dart';
-// import 'package:food_delivery_app/Core/models/product_model.dart';
-// import 'package:food_delivery_app/Pages/Screen/food_detail_screeen.dart';
-//
-//
-
 import '../Utils/consts.dart';
 import '../models/product_model.dart';
 import '../pages/screen/food_detail_screeen.dart';
+import '../provider/favorite_provider.dart';
 
 class ProductsItemsDisplay extends ConsumerWidget {
   const ProductsItemsDisplay({super.key, required this.foodModel});
@@ -19,11 +13,7 @@ class ProductsItemsDisplay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final provider = ref.watch(favoriteProvider);
-    //
-    //
-    //
-
+    final FavoriteProvider provider = ref.watch(favoriteProvider);
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
@@ -32,7 +22,6 @@ class ProductsItemsDisplay extends ConsumerWidget {
           // ignore: inference_failure_on_instance_creation, always_specify_types
           PageRouteBuilder(
             transitionDuration: const Duration(seconds: 1),
-
             pageBuilder: (_, __, ___) => FoodDetailScreen(product: foodModel),
           ),
         );
@@ -58,18 +47,15 @@ class ProductsItemsDisplay extends ConsumerWidget {
             right: 10,
             child: GestureDetector(
               onTap: () {
-                // ref.read(favoriteProvider).toggleFavorite(foodModel.name);
-                //
-                //
-                //
-                //
+                ref.read(favoriteProvider).toggleFavorite(foodModel.name);
               },
               child: CircleAvatar(
                 radius: 15,
-
-                backgroundColor: Colors.red[100],
-
-                child: Image.asset('assets/food-delivery/icon/fire.png', height: 22),
+                backgroundColor: provider.isExist(foodModel.name) ? Colors.red[100] : Colors.transparent,
+                child:
+                    provider.isExist(foodModel.name)
+                        ? Image.asset('assets/food-delivery/icon/fire.png', height: 22)
+                        : const Icon(Icons.local_fire_department, color: red),
               ),
             ),
           ),
